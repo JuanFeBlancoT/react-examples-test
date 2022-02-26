@@ -1,7 +1,7 @@
 class Timer extends React.Component {
     constructor(props) {
     super(props);
-    this.state = {hours: 0, minutes: 0, seconds: 0};
+    this.state = {hours: 0, minutes: 0, seconds: 0, hours2: 0, minutes2: 0, seconds2: 0};
     }
 
     //done each interval
@@ -23,8 +23,25 @@ class Timer extends React.Component {
             hours: state.hours +1
             }));
         }
+        //Version2
+        this.setState(state => ({
+            seconds2: state.seconds2 + 1
+            }));
+        //change minutes and seconds
+        if(this.state.seconds2>10){
+            this.setState(state => ({
+            seconds2: 0,
+            minutes2: state.minutes2 +1
+            }));
+        }
+        //change hours and minutes
+        if(this.state.minutes2>10){
+            this.setState(state => ({
+            minute2s: 0,
+            hours2: state.hours2 +1
+            }));
+        }
     }
-
     
     //defines interval
     componentDidMount() {
@@ -48,8 +65,15 @@ class Timer extends React.Component {
         return React.createElement(
             'div',
             null,
-            'Seconds: ',
-            this.checkTimeFormat(this.state.hours)+":"+this.checkTimeFormat(this.state.minutes)+":"+this.checkTimeFormat(this.state.seconds)
+            'Time passed: ',
+            this.checkTimeFormat(this.state.hours)+":"+this.checkTimeFormat(this.state.minutes)+":"+this.checkTimeFormat(this.state.seconds),
+            React.createElement(
+                "h3",
+                null,
+                "Timer version 2: "
+            ),
+            'Time passed V2: ',
+            this.checkTimeFormat(this.state.hours2)+":"+this.checkTimeFormat(this.state.minutes2)+":"+this.checkTimeFormat(this.state.seconds2)
         );
     }
 }
