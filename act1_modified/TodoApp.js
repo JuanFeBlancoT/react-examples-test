@@ -36,7 +36,7 @@ class TodoApp extends React.Component {
         React.createElement(
             "button",
             null,
-            "Add #",
+            "Add task ",
             this.getCurrentLetter(this.state.items.length + 65)
         )
         )
