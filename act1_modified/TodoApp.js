@@ -6,6 +6,10 @@ class TodoApp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    getCurrentLetter(todoNext){
+        return String.fromCharCode(todoNext);
+    }
+
     render() {
     return React.createElement(
         "div",
@@ -33,7 +37,7 @@ class TodoApp extends React.Component {
             "button",
             null,
             "Add #",
-            this.state.items.length + 1
+            this.getCurrentLetter(this.state.items.length + 65)
         )
         )
     );
