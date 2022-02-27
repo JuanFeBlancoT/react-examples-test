@@ -36,7 +36,7 @@ class TodoApp extends React.Component {
         React.createElement(
             "button",
             null,
-            "Add #",
+            "Add task ",
             this.getCurrentLetter(this.state.items.length + 65)
         )
         )
@@ -54,14 +54,24 @@ class TodoApp extends React.Component {
     }
     const newItem = {
         text: this.state.text,
-        id: Date.now()
+        id: this.state.items.length + 65
     };
     this.setState(state => ({
         items: state.items.concat(newItem),
         text: ''
     }));
+    this.getInfo();
+    }
+
+
+    getInfo(){
+        const divChildren = document.getElementById('todos-example').firstElementChild.childNodes;
+        let taskUnorderedList = divChildren[1];
+        taskUnorderedList.style.listStyleType = "upper-latin";
     }
 }
+
+
 class TodoList extends React.Component {
     render() {
     return React.createElement(
@@ -74,6 +84,7 @@ class TodoList extends React.Component {
         ))
     );
     }
+    
 }  
 
 ReactDOM.render(React.createElement(TodoApp, null), document.getElementById('todos-example'));
